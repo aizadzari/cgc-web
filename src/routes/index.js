@@ -1,9 +1,11 @@
 import React from "react";
-import * as Redirect from "react-router-dom";
+import { Redirect } from "react-router-dom";
+import Home from "../pages/Home";
 import Login from '../pages/Login'
 
 const authProtectedRoutes = [
-    { path: "/", exact: true, component: () => <Redirect to="/dashboard" /> }
+    { path: "/home", component: Home },
+    { path: "/", exact: true, component: () => <Redirect to="/home" /> }
 ]
 
 const publicRoutes = [

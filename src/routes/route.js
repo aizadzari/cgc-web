@@ -1,5 +1,5 @@
 import React from "react";
-import * as Redirect from "react-router-dom";
+import { Redirect, Route } from "react-router-dom";
 
 const AppRoute = ({
 	component: Component,
@@ -7,7 +7,7 @@ const AppRoute = ({
 	...rest
 }) => {
 	return (
-		<Redirect.Route
+		<Route
 			{...rest}
 			render={props => {
 				if (isAuthProtected && JSON.parse(localStorage.getItem("authUser")) === null) {

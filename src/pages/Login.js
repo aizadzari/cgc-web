@@ -5,82 +5,45 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Card } from '@material-ui/core';
-import { postLogin } from '../store/Helpers'
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-export const UseStyles = makeStyles((theme) => ({
-    container: {
-        height: "100vh",
-        width: "100%",
-        position: "relative",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#e9e9e9"
-    },
-    paper: {
-        margin: theme.spacing(4),
-        display: 'flex',
-        flexDirection: 'column',
-    },
-    form: {
-        width: '100%',
-        marginTop: theme.spacing(1),
-    },
-    card: {
-        margin: window.innerWidth < 400 ? 40 : 0,
-        borderRadius: 12,
-    },
-    input: {
-        borderRadius: 8
-    },
-    submit: {
-        margin: theme.spacing(3, 0, 2),
-    },
-}));
-
 const Login = (props) => {
-    const classes = UseStyles();
+    const [loading, setLoading] = useState(false)
     const [formLogin, setFormLogin] = useState({
         name: "",
-        apiKey: ""
+        password: ""
     })
-    const [loading, setLoading] = useState(false)
 
     const handleSubmit = async (e) => {
+        // cancels the event if it is cancelable, meaning that the default action that belongs to the event will not occur.
         e.preventDefault()
+
+        // set loading to true before submmiting or push to api request
         setLoading(true)
 
-        // let data = {
-        //     "name": "John Doe",
-        //     "apiKey": "b10ce6bf7468a1f1"
-        // }
+        // giving a 'payload' as a new variable to hold the form data
+        let payload = formLogin;
 
-        let data = formLogin;
-
-        const response = await postLogin('login', data);
-        if (response !== undefined || response !== null) {
-            localStorage.setItem("authUser", JSON.stringify(response));
-            localStorage.setItem("accesstoken", JSON.stringify(response.token.token));
+        // using settimeout just to make it loading appear for 1s since we are not requesting response from API.
+        setTimeout(() => {
+            localStorage.setItem("authUser", JSON.stringify(payload));;
             props.history.push('/')
-        }
-        setLoading(false)
+            setLoading(true)
+        }, 1000);
     }
     return (
         <React.Fragment>
-            <div className={classes.container}>
-                <Card className={classes.card}>
+            <div className="container">
+                <Card className="card-radius">
                     <Container component="main" maxWidth="xs">
                         <CssBaseline />
-                        <div className={classes.paper}>
+                        <div className="form-body">
                             <Typography component="h1" variant="h5">Login</Typography>
 
-                            <form className={classes.form} onSubmit={handleSubmit}>
+                            <form className="" onSubmit={handleSubmit}>
                                 <TextField
-                                    className={classes.input}
                                     variant="outlined"
                                     margin="normal"
                                     required
@@ -91,10 +54,18 @@ const Login = (props) => {
                                     autoComplete="email"
                                     autoFocus
                                     value={formLogin.name}
-                                    onChange={e => setFormLogin({ ...formLogin, name: e.target.value })}
+                                    className="margin-sm"
+                                    onChange={e => {
+                                        // call 'setFormLogin' to overwrite the state value;
+                                        setFormLogin(prev => {
+                                            return {
+                                                ...prev,
+                                                name: e.target.value
+                                            }
+                                        })
+                                    }}
                                 />
                                 <TextField
-                                    className={classes.input}
                                     variant="outlined"
                                     margin="normal"
                                     required
@@ -103,19 +74,26 @@ const Login = (props) => {
                                     label="Password"
                                     type="password"
                                     id="password"
-                                    value={formLogin.apiKey}
+                                    value={formLogin.password}
                                     autoComplete="current-password"
-                                    onChange={e => setFormLogin({ ...formLogin, apiKey: e.target.value })}
+                                    onChange={e => {
+                                        // call 'setFormLogin' to overwrite the state value;
+                                        setFormLogin(prev => {
+                                            return {
+                                                ...prev,
+                                                password: e.target.value
+                                            }
+                                        })
+                                    }}
                                 />
 
                                 <Button
+                                    className="margin-b-sm margin-t-xs"
                                     fullWidth
                                     variant="contained"
                                     color="primary"
                                     type="submit"
-                                    // onClick={handleSubmit}
-                                    className={classes.submit}
-                                >{loading && <CircularProgress disableShrink style={{ marginRight: 8, color: "#ffffff" }} size={20} />} Login</Button>
+                                >{loading && <CircularProgress color='inherit' disableShrink className='margin-r-xs' size={20} />} Login</Button>
                             </form>
                         </div>
                     </Container>
