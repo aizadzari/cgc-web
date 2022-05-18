@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const API_ROOT = 'https://dev-dl.tdcx.com:3092/'
+export const API_ROOT = 'https://jsonplaceholder.typicode.com/'
 
 // Login Method
 export const postLogin = (url, data) => {

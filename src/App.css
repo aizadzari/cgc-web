@@ -1,3 +1,13 @@
+body {
+  margin: 0px;
+}
+
+.body-container {
+  position: relative;
+  display: block;
+  width: 100vw;
+}
+
 .max-screen-height {
   height: 100vh;
 }
@@ -21,29 +31,57 @@
 }
 
 .margin-t-xs {
-  margin-top: 1rem !important;
-}
-
-.margin-t-sm {
-  margin-top: 2rem !important;
-}
-
-.margin-b-sm {
-  margin-bottom: 2rem !important;
+  margin-top: .475rem !important;
 }
 
 .margin-r-xs {
-  margin-right: 1rem !important;
+  margin-right: .475rem !important;
 }
+
+.margin-l-xs {
+  margin-left: .475rem !important;
+}
+
+.margin-y-xs {
+  margin-top: .475rem !important;
+  margin-bottom: .475rem !important;
+}
+
+.margin-x-sm {
+  margin-right: .875rem !important;
+  margin-left: .875rem !important;
+}
+
+.margin-t-sm {
+  margin-top: .875rem !important;
+}
+
+.margin-b-sm {
+  margin-bottom: .875rem !important;
+}
+
+.margin-y-sm {
+  margin-top: .875rem !important;
+  margin-bottom: .875rem !important;
+}
+
+.margin-y-md {
+  margin-top: 1.2rem !important;
+  margin-bottom: 1.2rem !important;
+}
+
+.align-middle {
+  align-self: center;
+}
+
 
 .navbar {
   align-items: center;
-  height: 48px;
   background-color: #ffffff;
-  position: relative;
+  position: fixed;
   display: flex;
   justify-content: space-between;
-  padding: 8px 14px
+  width: 100vw;
 }
 
 .left-side-navbar {
@@ -52,4 +90,69 @@
   width: 70%;
   align-items: center;
   justify-content: flex-start;
+  padding: 8px 14px;
+}
+
+.right-side-navbar {
+  position: relative;
+  display: flex;
+  width: 30%;
+  padding: 8px 14px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.list-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  overflow: auto;
+  height: 94vh;
+  padding: 20px 0px 20px 20px;
+}
+
+.cards {
+  cursor: pointer !important;
+}
+
+.modal-ui {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  background-color: #0000003c;
+  margin: auto
+}
+
+.modal-body {
+  max-height: 400px;
+  width: 600px;
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.modal-actions {
+  float: right;
+}
+
+.text-area {
+  width: 100%;
+  border: none !important;
+  outline: none !important;
+  font-size: 1rem !important;
+}
+
+.text-small {
+  font-size: .775rem !important;
+}
+
+.list-body {
+  max-width: 50%;
+  min-width: 600px;
+}
+
+.list-items {
+  position: relative;
+  display: flex;
 }

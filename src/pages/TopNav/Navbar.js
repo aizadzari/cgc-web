@@ -11,7 +11,9 @@ const Navbar = ({ logout }) => {
                     </Avatar>
                     <Typography className='nav-title' component="div" key='h5' variant='h5'>{!JSON.parse(localStorage.getItem('authUser')) ? '' : `Hi, ${JSON.parse(localStorage.getItem('authUser')).name}`}</Typography>
                 </div>
-                <Button onClick={logout}>Logout</Button>
+                <div className='right-side-navbar'>
+                    <Button onClick={logout}>Logout</Button>
+                </div>
             </div>
         </React.Fragment >
     )
