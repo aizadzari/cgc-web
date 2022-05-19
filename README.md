@@ -2,19 +2,20 @@
 
 In the project directory, you can run:
 
-### `yarn start`
+### How to run app
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Pull the latest code from branch main
+2. install yarn package 'yarn'
+3. to run the app in development mode `yarn start`
+4. Open [http://localhost:3000] to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
+### Credential for `admin`
 
-### Credential for admin
 username: edward
 password: edward
 
-### Credential for user
+### Credential for `user`
+
 username: john
 password: john
