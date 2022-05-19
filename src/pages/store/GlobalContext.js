@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useReducer } from 'react'
 import { Reducer } from './Reducer'
-import { get } from '../../store/Helpers'
 import { ActionsType } from './ActionsType';
+import { getPost } from './_api';
 
 export const GlobalContext = createContext();
 
@@ -11,13 +11,13 @@ const GlobalProvider = ({ children }) => {
     });
 
     useEffect(() => {
-        get(`posts`).then(response => {
+        getPost().then(response => {
             dispatch({
                 type: ActionsType.GET_POSTS,
                 payload: response
             })
         }).catch(err => {
-            
+
         })
     }, [])
     return (

@@ -1,33 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import '../App.css'
 import ContentPage from './ContentPage'
-import Navbar from './TopNav/Navbar'
 import GlobalProvider from './store/GlobalContext'
-import ModalComment from './ModalComment'
 
-const Home = () => {
-    const [visible, setVisible] = useState(false);
-    const [selectedItem, setSelectedItem] = useState(null)
-
-    const handlelogout = () => {
-
+const Home = (props) => {
+    const handleGoToNext = (item) => {
+        props.history.push({
+            pathname: `details/${item.id}`,
+        })
     }
     return (
         <React.Fragment>
             <GlobalProvider>
-                    <Navbar
-                        logout={handlelogout}
-                    />
                     <ContentPage
-                        setVisible={setVisible}
-                        handleSelectedItem={(value) => {
-                            setSelectedItem(value)
-                        }}
-                    />
-                    <ModalComment
-                        open={visible}
-                        handleClose={() => setVisible(false)}
-                        selectedItem={selectedItem}
+                        handleGoToNext={handleGoToNext}
                     />
             </GlobalProvider>
         </React.Fragment>

@@ -8,12 +8,32 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { Card } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { Alert } from '@material-ui/lab';
+
+
+const userArray = [
+    {
+        email: "edward@mail.com",
+        name: "Edward",
+        password: "edward",
+        role: "admin"
+    },
+    {
+        email: "john@mail.com",
+        name: "John",
+        password: "john",
+        role: ""
+    }
+]
 
 const Login = (props) => {
     const [loading, setLoading] = useState(false)
+    const [error, setError] = useState('')
     const [formLogin, setFormLogin] = useState({
+        email: "",
         name: "",
-        password: ""
+        password: "",
+        role: ""
     })
 
     const handleSubmit = async (e) => {
@@ -24,14 +44,26 @@ const Login = (props) => {
         setLoading(true)
 
         // giving a 'payload' as a new variable to hold the form data
-        let payload = formLogin;
+        let payload = userArray.find(user => user.name.toLocaleLowerCase().includes(formLogin.name.toLocaleLowerCase()))
+        console.log(payload);
 
         // using settimeout just to make it loading appear for 1s since we are not requesting response from API.
-        setTimeout(() => {
-            localStorage.setItem("authUser", JSON.stringify(payload));;
-            props.history.push('/')
-            setLoading(true)
-        }, 1000);
+        if (!payload) {
+            setError('User not found.')
+            setLoading(false)
+            setFormLogin({
+                email: "",
+                name: "",
+                password: "",
+                role: ""
+            })
+        } else {
+            setTimeout(() => {
+                localStorage.setItem("authUser", JSON.stringify(payload));;
+                props.history.push('/')
+                setLoading(true)
+            }, 1000);
+        }
     }
     return (
         <React.Fragment>
@@ -42,6 +74,8 @@ const Login = (props) => {
                         <div className="form-body">
                             <Typography component="h1" variant="h5">Login</Typography>
 
+                            {error && <Alert className='margin-t-xs' severity={error ? 'error' : 'success'}>{error}</Alert>}
+
                             <form className="" onSubmit={handleSubmit}>
                                 <TextField
                                     variant="outlined"
@@ -49,9 +83,9 @@ const Login = (props) => {
                                     required
                                     fullWidth
                                     id="email"
-                                    label="Email Address"
-                                    name="email"
-                                    autoComplete="email"
+                                    label="username"
+                                    name="text"
+                                    // autoComplete="text"
                                     autoFocus
                                     value={formLogin.name}
                                     className="margin-sm"

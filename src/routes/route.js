@@ -1,11 +1,13 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
+import Navbar from "../pages/TopNav/Navbar";
 
 const AppRoute = ({
 	component: Component,
 	isAuthProtected,
 	...rest
 }) => {
+	console.log(isAuthProtected);
 	return (
 		<Route
 			{...rest}
@@ -17,6 +19,7 @@ const AppRoute = ({
 				}
 				return (
 					<>
+						{isAuthProtected && <Navbar {...props} />}
 						<Component {...props} />
 					</>
 				);

@@ -13,7 +13,6 @@ const App = () => {
           {publicRoutes.map((route, idx) => (
             <AppRoute
               path={route.path}
-              // layout={NonAuthLayout}
               component={route.component}
               key={idx}
               isAuthProtected={false}
@@ -23,7 +22,6 @@ const App = () => {
           {authProtectedRoutes.map((route, idx) => (
             <AppRoute
               path={route.path}
-              // layout={Layout}
               component={route.component}
               key={idx}
               isAuthProtected={true}
