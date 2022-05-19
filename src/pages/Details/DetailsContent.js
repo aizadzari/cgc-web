@@ -53,6 +53,9 @@ const DetailsContent = ({ id, handleBack }) => {
   return (
     <React.Fragment>
       <div className='details-container'>
+        <Button onClick={() => handleBack()}><i className="ri-home-line margin-r-xs"></i>Back to homepage</Button>
+      </div>
+      <div className='details-container-body'>
         <div className='list-body'>
           <Card variant="outlined" className='margin-y-sm cards' >
             <CardContent>
@@ -205,6 +208,7 @@ const DetailsContent = ({ id, handleBack }) => {
           }}
         />
       </div>
+
     </React.Fragment>
   )
 }
